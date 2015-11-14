@@ -1,0 +1,25 @@
+{
+    "name": "moltin/collection",
+    "description": "A reusable collection base class for storing entities.",
+    "authors": [
+        {
+            "name": "James Owers",
+            "email": "james@moltin.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Moltin\\Collection\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Moltin\\Collection\\Test\\": "Test"
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {},
+    "require-dev": {
+        "phpspec/phpspec": "^2.2@dev"
+    }
+}
