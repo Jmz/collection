@@ -8,8 +8,6 @@ use Prophecy\Argument;
 
 class CollectionSpec extends ObjectBehavior
 {
-    private $dummyClass = 'Spec\Moltin\Collection\Dummy';
-
     public function let()
     {
         $this->beAnInstanceOf('Spec\Moltin\Collection\DummyCollection');
@@ -17,7 +15,13 @@ class CollectionSpec extends ObjectBehavior
 
     public function it_is_initializable()
     {
-        $this->beConstructedWith($this->dummyClass);
+        $this->beConstructedWith('Spec\Moltin\Collection\Dummy');
+        $this->shouldHaveType('Spec\Moltin\Collection\DummyCollection');
+    }
+
+    public function it_should_accept_an_interface_as_type()
+    {
+        $this->beConstructedWith('Spec\Moltin\Collection\DummyInterface');
         $this->shouldHaveType('Spec\Moltin\Collection\DummyCollection');
     }
 
@@ -28,7 +32,6 @@ class CollectionSpec extends ObjectBehavior
     }
 
 }
-
 
 class DummyCollection extends Collection {}
 
