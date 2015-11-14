@@ -14,7 +14,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Moltin\\Collection\\Test\\": "Test"
+            "Moltin\\Collection\\Spec\\": "test"
         }
     },
     "minimum-stability": "dev",

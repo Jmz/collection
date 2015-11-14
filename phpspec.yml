@@ -1,0 +1,5 @@
+suites:
+  collection_suite:
+    namespace: Moltin\Collection
+    psr4_prefix: Moltin\Collection
+    spec_prefix: Spec
