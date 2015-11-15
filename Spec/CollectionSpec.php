@@ -49,6 +49,17 @@ class CollectionSpec extends ObjectBehavior
         $this->collection->shouldNotContain($dummy);
     }
 
+    public function it_should_return_the_count_of_all_objects_in_the_collection()
+    {
+        $dummyOne = \Mockery::mock('\Spec\Moltin\Collection\Dummy');
+        $dummyTwo = \Mockery::mock('\Spec\Moltin\Collection\Dummy');
+
+        $this->attach($dummyOne);
+        $this->attach($dummyTwo);
+
+        $this->count()->shouldReturn(2);
+    }
+
 }
 
 class DummyCollection extends Collection

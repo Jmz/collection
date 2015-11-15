@@ -2,7 +2,7 @@
 
 namespace Moltin\Collection;
 
-abstract class Collection
+abstract class Collection implements \Countable
 {
     /**
      * The type of object that this collection should accept
@@ -51,6 +51,16 @@ abstract class Collection
         $hash = $this->generateKey($item);
 
         unset($this->collection[$hash]);
+    }
+
+    /**
+     * Return the number of items in the collection
+     *
+     * @return int
+     */
+    public function count()
+    {
+        return count($this->collection);
     }
 
     /**
