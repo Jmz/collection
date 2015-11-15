@@ -34,7 +34,7 @@ abstract class Collection
     {
         $this->checkType($item);
 
-        $hash = spl_object_hash($item);
+        $hash = $this->generateKey($item);
 
         $this->collection[$hash] = $item;
     }
@@ -48,9 +48,14 @@ abstract class Collection
     {
         $this->checkType($item);
 
-        $hash = spl_object_hash($item);
+        $hash = $this->generateKey($item);
 
         unset($this->collection[$hash]);
+    }
+
+    protected function generateKey($item)
+    {
+        return spl_object_hash($item);
     }
 
     /**
