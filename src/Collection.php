@@ -32,10 +32,20 @@ abstract class Collection
      */
     public function attach($item)
     {
-        if (!$item instanceof $this->type) {
-            throw new \InvalidArgumentException("Attached items must be an instance of {$this->type}");
-        }
+        $this->checkType($item);
 
         $this->collection[] = $item;
+    }
+
+    /**
+     * Check that the provided item object matches the $type property
+     *
+     * @param $item
+     */
+    protected function checkType($item)
+    {
+        if (!$item instanceof $this->type) {
+            throw new \InvalidArgumentException("Items in this collection must be instances of {$this->type}");
+        }
     }
 }
