@@ -15,24 +15,35 @@ class CollectionSpec extends ObjectBehavior
 
     public function it_is_initializable()
     {
-        $this->beConstructedWith('Spec\Moltin\Collection\Dummy');
         $this->shouldHaveType('Spec\Moltin\Collection\DummyCollection');
     }
 
-    public function it_should_accept_an_interface_as_type()
+    public function it_should_throw_an_exception_if_type_is_not_a_valid_class()
     {
-        $this->beConstructedWith('Spec\Moltin\Collection\DummyInterface');
-        $this->shouldHaveType('Spec\Moltin\Collection\DummyCollection');
+        $this->shouldThrow('InvalidArgumentException')->during('__construct');
     }
 
-    public function it_throws_an_exception_if_class_type_does_not_exist()
+    public function it_should_add_an_object_to_the_collection()
     {
-        $this->shouldThrow('\InvalidArgumentException')
-            ->during('__construct', ['Invalid']);
+        $dummy = \Mockery::mock('\Spec\Moltin\Collection\Dummy');
+
+        $this->attach($dummy);
+
+        $this->collection->shouldContain($dummy);
+    }
+
+    public function it_should_throw_an_exception_if_added_item_does_not_match_type()
+    {
+        $dummy = \Mockery::mock('\Spec\Moltin\Collection\NotDummy');
+
+        $this->shouldThrow('InvalidArgumentException')->during('attach', [$dummy]);
     }
 
 }
 
-class DummyCollection extends Collection {}
-
-class Dummy {}
+class DummyCollection extends Collection
+{
+    // Make properties public for testing
+    public $type = '\Spec\Moltin\Collection\Dummy';
+    public $collection = [];
+}
