@@ -40,6 +40,20 @@ abstract class Collection
     }
 
     /**
+     * Remove an object from the collection
+     *
+     * @param $item
+     */
+    public function detach($item)
+    {
+        $this->checkType($item);
+
+        $hash = spl_object_hash($item);
+
+        unset($this->collection[$hash]);
+    }
+
+    /**
      * Check that the provided item object matches the $type property
      *
      * @param $item

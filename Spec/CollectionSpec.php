@@ -39,6 +39,16 @@ class CollectionSpec extends ObjectBehavior
         $this->shouldThrow('InvalidArgumentException')->during('attach', [$dummy]);
     }
 
+    public function it_should_remove_an_object_from_the_collection()
+    {
+        $dummy = \Mockery::mock('\Spec\Moltin\Collection\Dummy');
+
+        $this->attach($dummy);
+        $this->detach($dummy);
+
+        $this->collection->shouldNotContain($dummy);
+    }
+
 }
 
 class DummyCollection extends Collection
