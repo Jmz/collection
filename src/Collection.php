@@ -34,7 +34,9 @@ abstract class Collection
     {
         $this->checkType($item);
 
-        $this->collection[] = $item;
+        $hash = spl_object_hash($item);
+
+        $this->collection[$hash] = $item;
     }
 
     /**
