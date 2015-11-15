@@ -53,6 +53,12 @@ abstract class Collection
         unset($this->collection[$hash]);
     }
 
+    /**
+     * Generate an identifier for the supplied object
+     *
+     * @param $item
+     * @return string
+     */
     protected function generateKey($item)
     {
         return spl_object_hash($item);
