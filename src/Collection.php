@@ -86,6 +86,7 @@ abstract class Collection implements \Countable
      *
      * @param $item
      * @return string
+     * @todo Base the hash on the data in the object rather than the spl hash?
      */
     protected function generateKey($item)
     {
