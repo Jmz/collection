@@ -54,6 +54,24 @@ abstract class Collection implements \Countable
     }
 
     /**
+     * Check whether the supplied object exists in the collection
+     *
+     * @param $item
+     * @return bool
+     */
+    public function contains($item)
+    {
+        $this->checkType($item);
+
+        $hash = $this->generateKey($item);
+
+        return array_key_exists(
+            $hash,
+            $this->collection
+        );
+    }
+
+    /**
      * Return the number of items in the collection
      *
      * @return int

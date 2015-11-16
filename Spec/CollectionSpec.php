@@ -49,6 +49,25 @@ class CollectionSpec extends ObjectBehavior
         $this->collection->shouldNotContain($dummy);
     }
 
+    public function it_sholud_return_true_when_contains_is_called_if_the_item_exists_in_the_collection()
+    {
+        $dummy = \Mockery::mock('\Spec\Moltin\Collection\Dummy');
+
+        $this->attach($dummy);
+
+        $this->contains($dummy)->shouldReturn(true);
+    }
+
+    public function it_sholud_return_false_when_contains_is_called_if_the_item_does_not_exist_in_the_collection()
+    {
+        $dummy = \Mockery::mock('\Spec\Moltin\Collection\Dummy');
+        $dummyTwo = \Mockery::mock('\Spec\Moltin\Collection\Dummy');
+
+        $this->attach($dummy);
+
+        $this->contains($dummyTwo)->shouldReturn(false);
+    }
+
     public function it_should_return_the_count_of_all_objects_in_the_collection()
     {
         $dummyOne = \Mockery::mock('\Spec\Moltin\Collection\Dummy');
