@@ -40,6 +40,18 @@ abstract class Collection implements \Countable
     }
 
     /**
+     * Attach multiple valid items to the collection
+     *
+     * @param array $items
+     */
+    public function attachMany(array $items)
+    {
+        foreach($items as $item) {
+            $this->attach($item);
+        }
+    }
+
+    /**
      * Remove an object from the collection
      *
      * @param $item

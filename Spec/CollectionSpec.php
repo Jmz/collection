@@ -117,6 +117,17 @@ class CollectionSpec extends ObjectBehavior
         $this->count()->shouldReturn(0);
     }
 
+    public function it_should_allow_you_to_attach_many_items_at_once()
+    {
+        $dummies = [
+            \Mockery::mock('\Spec\Moltin\Collection\Dummy'),
+            \Mockery::mock('\Spec\Moltin\Collection\Dummy')
+        ];
+
+        $this->attachMany($dummies);
+        $this->count()->shouldReturn(2);
+    }
+
 }
 
 class DummyCollection extends Collection
