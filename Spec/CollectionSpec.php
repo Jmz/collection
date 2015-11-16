@@ -105,6 +105,18 @@ class CollectionSpec extends ObjectBehavior
             ->shouldReturn(false);
     }
 
+    public function it_should_remove_all_items_from_the_collection()
+    {
+        $dummyOne = \Mockery::mock('\Spec\Moltin\Collection\Dummy');
+        $dummyTwo = \Mockery::mock('\Spec\Moltin\Collection\Dummy');
+
+        $this->attach($dummyOne);
+        $this->attach($dummyTwo);
+
+        $this->removeAll();
+        $this->count()->shouldReturn(0);
+    }
+
 }
 
 class DummyCollection extends Collection

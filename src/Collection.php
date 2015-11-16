@@ -102,6 +102,14 @@ abstract class Collection implements \Countable
     }
 
     /**
+     * Remove all items from the collection
+     */
+    public function removeAll()
+    {
+        $this->collection = [];
+    }
+
+    /**
      * Generate an identifier for the supplied object
      *
      * @param $item
