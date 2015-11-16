@@ -79,6 +79,32 @@ class CollectionSpec extends ObjectBehavior
         $this->count()->shouldReturn(2);
     }
 
+    public function it_should_find_an_item_based_on_a_getter()
+    {
+        $dummy = \Mockery::mock('\Spec\Moltin\Collection\Dummy');
+        $dummy->shouldReceive('getId')
+            ->once()
+            ->andReturn(1);
+
+        $this->attach($dummy);
+
+        $this->findOneBy('id', 1)
+            ->shouldReturn($dummy);
+    }
+
+    public function it_should_return_false_if_the_value_isnt_found()
+    {
+        $dummy = \Mockery::mock('\Spec\Moltin\Collection\Dummy');
+        $dummy->shouldReceive('getId')
+            ->once()
+            ->andReturn(2);
+
+        $this->attach($dummy);
+
+        $this->findOneBy('id', 1)
+            ->shouldReturn(false);
+    }
+
 }
 
 class DummyCollection extends Collection

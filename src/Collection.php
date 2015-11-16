@@ -82,6 +82,26 @@ abstract class Collection implements \Countable
     }
 
     /**
+     * Find an item based on a field
+     *
+     * @param $field
+     * @param $value
+     * @return bool
+     */
+    public function findOneBy($field, $value)
+    {
+        $getterName = 'get'.ucwords($field);
+
+        foreach($this->collection as $item) {
+            if ($item->{$getterName}() === $value) {
+                return $item;
+            }
+        }
+
+        return false;
+    }
+
+    /**
      * Generate an identifier for the supplied object
      *
      * @param $item
